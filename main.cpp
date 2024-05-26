@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include "imagehelper.h"
+
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -19,6 +21,12 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+
+    qmlRegisterSingletonType<ImageHelper>("MyApp", 1, 0, "ImageHelper",
+                                          [](QQmlEngine *, QJSEngine *) -> QObject* {
+                                              return new ImageHelper;
+                                          });
+
     engine.load(url);
 
     return app.exec();
