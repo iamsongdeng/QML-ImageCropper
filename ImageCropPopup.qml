@@ -126,7 +126,8 @@ Popup {
 
     function createSelection()
     {
-        if(!selection) {
+        if(selection) selection.destroy();
+        //if(!selection) {
             // centre in parent
             var ajustWidth = Math.min(maxSelectionSide, imageItem.implicitWidth, imageItem.implicitHeight);   //Math.min(parent.width, parent.height) / 2;
             var properties = {
@@ -134,7 +135,7 @@ Popup {
                 "x": (imageItem.implicitWidth - ajustWidth) / 2, "y": (imageItem.implicitHeight - ajustWidth) / 2
             }
             selection = selectionComponent.createObject(imageItem, properties)
-        }
+        //}
         console.log("x===" + selection.x + ", y==="+ selection.y );
     }
 
